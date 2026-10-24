@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delest — Privacy policy</title>
+<link rel="icon" href="../icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<nav><a href="index.html">Delest</a><a href="terms.html">Terms of use</a><a href="../fr/confidentialite.html" lang="fr">Français</a></nav>
+<h1>Privacy policy</h1>
+<p class="date">Effective 25 October 2026</p>
+
+<p>Delest is a desktop app and a command for macOS, Windows and Linux, developed by Othman Kaabaoui. It finds what
+rebuilds itself on a developer's machine (builds, dependencies, caches) and frees the space with their consent. This
+page explains what happens to your data.</p>
+
+<h2>In short</h2>
+<ul>
+<li>Delest collects no data and shares none.</li>
+<li>There is no account, no advertising and no analytics.</li>
+<li>What Delest learns about your machine stays on your machine.</li>
+</ul>
+
+<h2>What Delest reads, and where it keeps it</h2>
+<p>To decide, Delest reads the names of folders and files, their size and modification date, the git state of projects
+(what is tracked or ignored) and the presence of manifests and lockfiles (<code>Cargo.toml</code>,
+<code>package-lock.json</code>…). It keeps in its data folder, on your machine, the index of the last scan, the journal of
+what it did, the list of quarantined items, your decisions and your settings. That folder is
+<code>~/Library/Application Support/delest</code> on macOS, <code>~/.local/share/delest</code> on Linux and
+<code>%LOCALAPPDATA%\delest</code> on Windows.</p>
+
+<h2>What goes over the network</h2>
+<ul>
+<li><strong>Whether the network is there.</strong> Before proposing a folder that only rebuilds online (npm dependencies,
+for instance), Delest tries a connection to <code>registry.npmjs.org</code>, sending nothing.</li>
+<li><strong>The AI models.</strong> They are downloaded from Hugging Face, only when you ask for it
+(<code>delest models</code>).</li>
+<li><strong>The local model.</strong> It runs on your machine and listens on the local address <code>127.0.0.1</code>
+only; your questions and its answers do not leave your machine.</li>
+<li><strong>“Ask the agent”.</strong> Only when you click this button, Delest puts your question to your agent (Claude
+Code) with the folder's path, the names of what it holds and the facts Delest established, never the files' contents.
+The agent handles that request under its own terms, its publisher's. The button can be turned off in the Settings.</li>
+</ul>
+
+<h2>Agents and Vario</h2>
+<p>If you install its hook in your AI agents, Delest adds a line to their configuration file (keeping a copy of it) and
+checks the disk at the start of each session. If Vario is installed, Delest reads its local state to spare your agent's
+quota. If it finds Handoff, it reads your projects' activity dates locally.</p>
+
+<h2>Erasing your data</h2>
+<p><code>delest remove</code> takes Delest out of your agents; deleting its data folder erases everything it kept. On
+Windows, uninstalling also removes the timer and the agents' hooks.</p>
+
+<h2>Changes</h2>
+<p>If this policy changes, the new version will be published on this page, with its effective date.</p>
+
+<h2>Contact</h2>
+<p>For any question: <a href="mailto:kaabaoui.othman@gmail.com">kaabaoui.othman@gmail.com</a></p>
+
+<footer>Delest · Othman Kaabaoui</footer>
+</main>
+</body>
+</html>

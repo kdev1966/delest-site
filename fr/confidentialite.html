@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delest — Politique de confidentialité</title>
+<link rel="icon" href="../icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<nav><a href="../index.html">Delest</a><a href="conditions.html">Conditions d’utilisation</a><a href="../en/privacy.html" lang="en">English</a></nav>
+<h1>Politique de confidentialité</h1>
+<p class="date">En vigueur le 25 octobre 2026</p>
+
+<p>Delest est une application de bureau et une commande pour macOS, Windows et Linux, développées par Othman Kaabaoui.
+Elle trouve sur le poste d’un développeur ce qui se reconstruit (compilations, dépendances, caches) et libère l’espace
+avec son accord. Cette page explique ce que deviennent vos données.</p>
+
+<h2>En bref</h2>
+<ul>
+<li>Delest ne collecte aucune donnée et n’en partage aucune.</li>
+<li>Il n’y a ni compte, ni publicité, ni mesure d’audience.</li>
+<li>Ce que Delest apprend de votre poste reste sur votre poste.</li>
+</ul>
+
+<h2>Ce que Delest lit, et où il le garde</h2>
+<p>Pour décider, Delest lit des noms de dossiers et de fichiers, leur taille, leur date de modification, l’état git des
+projets (ce qui est suivi ou ignoré) et la présence de manifestes et de lockfiles (<code>Cargo.toml</code>,
+<code>package-lock.json</code>…). Il garde dans son dossier de données, sur votre poste, l’index de la dernière analyse,
+le journal de ce qu’il a fait, la liste des éléments en quarantaine, vos décisions et vos réglages. Ce dossier est
+<code>~/Library/Application Support/delest</code> sous macOS, <code>~/.local/share/delest</code> sous Linux et
+<code>%LOCALAPPDATA%\delest</code> sous Windows.</p>
+
+<h2>Ce qui passe par le réseau</h2>
+<ul>
+<li><strong>Savoir si le réseau est là.</strong> Avant de proposer un dossier qui ne se reconstruit qu’en ligne (des
+dépendances npm, par exemple), Delest tente une connexion à <code>registry.npmjs.org</code>, sans rien y envoyer.</li>
+<li><strong>Les modèles d’IA.</strong> Ils sont téléchargés depuis Hugging Face, seulement quand vous le demandez
+(<code>delest models</code>).</li>
+<li><strong>Le modèle local.</strong> Il tourne sur votre poste et n’écoute que l’adresse locale
+<code>127.0.0.1</code> ; vos questions et ses réponses ne quittent pas votre poste.</li>
+<li><strong>« Demander à l’agent ».</strong> Seulement quand vous cliquez sur ce bouton, Delest pose votre question à
+votre agent (Claude Code) avec le chemin du dossier, les noms de ce qu’il contient et les faits que Delest a établis,
+jamais le contenu des fichiers. L’agent traite cette demande selon ses propres conditions, celles de son éditeur. Ce
+bouton peut être désactivé dans les Réglages.</li>
+</ul>
+
+<h2>Les agents et Vario</h2>
+<p>Si vous installez son hook dans vos agents d’IA, Delest ajoute une ligne à leur fichier de configuration (dont il
+garde une copie) et vérifie le disque au début de chaque session. Si Vario est installé, Delest lit son état local pour
+ménager le quota de votre agent. S’il trouve Handoff, il lit en local les dates d’activité de vos projets.</p>
+
+<h2>Effacer vos données</h2>
+<p><code>delest remove</code> retire Delest de vos agents ; supprimer son dossier de données efface tout ce qu’il a
+gardé. Sous Windows, la désinstallation retire aussi la minuterie et les hooks des agents.</p>
+
+<h2>Modifications</h2>
+<p>Si cette politique change, la nouvelle version sera publiée sur cette page, avec sa date d’entrée en vigueur.</p>
+
+<h2>Contact</h2>
+<p>Pour toute question : <a href="mailto:kaabaoui.othman@gmail.com">kaabaoui.othman@gmail.com</a></p>
+
+<footer>Delest · Othman Kaabaoui</footer>
+</main>
+</body>
+</html>
