@@ -20,7 +20,7 @@
 <div>
 <h1>Libérez de l’espace disque. <em>Sans toucher à votre travail.</em></h1>
 <p class="chapeau">Les compilations, les dépendances et les caches s’accumulent projet après projet. Delest trouve ce qui se reconstruit tout seul, explique chaque verdict, et rien ne part sans votre accord.</p>
-<div class="badges"><a class="badge plein" href="#telecharger">Télécharger · macOS, Windows, Linux</a><span class="badge voile">Gratuit · licence MIT</span></div>
+<div class="badges"><a class="badge plein" href="#telecharger">Télécharger · macOS, Windows, Linux</a><a class="badge voile" href="https://github.com/kdev1966/Delest">Open source · licence MIT</a></div>
 </div>
 <div class="scene" aria-hidden="true">
 <div class="jauge">
@@ -69,19 +69,19 @@
 </section>
 
 <section class="section" id="telecharger">
-<span class="etiquette">Version 0.1.0</span><h2>Télécharger Delest 0.1.0</h2>
+<span class="etiquette">Version 0.1.0</span><h2>Télécharger Delest 0.1.1</h2>
 <p>L’application et la commande <code>delest</code>, ensemble. Les paquets ne sont pas encore signés : votre système demande de confirmer la première ouverture.</p>
-<div class="telechargements"><div class="systeme"><h3>macOS</h3><p>Intel et Apple Silicon, macOS 12 ou plus récent. La première fois : clic droit sur Delest, puis Ouvrir.</p><a class="badge plein" href="https://github.com/kdev1966/delest-site/releases/download/v0.1.0/Delest_0.1.0_universal.dmg">Télécharger le DMG</a></div><div class="systeme"><h3>Windows</h3><p>Windows 10 ou 11, 64 bits, installé pour votre seul compte. SmartScreen : Informations complémentaires, puis Exécuter quand même.</p><a class="badge plein" href="https://github.com/kdev1966/delest-site/releases/download/v0.1.0/Delest_0.1.0_x64-setup.exe">Télécharger l’installeur</a></div><div class="systeme"><h3>Linux</h3><p>64 bits, avec WebKitGTK. Le paquet .deb installe aussi la commande <code>delest</code>.</p><div class="autres"><a class="badge plein" href="https://github.com/kdev1966/delest-site/releases/download/v0.1.0/Delest_0.1.0_amd64.deb">.deb</a><a class="badge voile" href="https://github.com/kdev1966/delest-site/releases/download/v0.1.0/Delest_0.1.0_amd64.AppImage">AppImage</a></div></div></div>
+<div class="telechargements"><div class="systeme"><h3>macOS</h3><p>Intel et Apple Silicon, macOS 12 ou plus récent. La première fois : clic droit sur Delest, puis Ouvrir.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.1/Delest_0.1.1_universal.dmg">Télécharger le DMG</a></div><div class="systeme"><h3>Windows</h3><p>Windows 10 ou 11, 64 bits, installé pour votre seul compte. SmartScreen : Informations complémentaires, puis Exécuter quand même.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.1/Delest_0.1.1_x64-setup.exe">Télécharger l’installeur</a></div><div class="systeme"><h3>Linux</h3><p>64 bits, avec WebKitGTK. Le paquet .deb installe aussi la commande <code>delest</code>.</p><div class="autres"><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.1/Delest_0.1.1_amd64.deb">.deb</a><a class="badge voile" href="https://github.com/kdev1966/Delest/releases/download/v0.1.1/Delest_0.1.1_amd64.AppImage">AppImage</a></div></div></div>
 </section>
 
 <section class="section questions">
 <span class="etiquette">Questions</span><h2>Questions fréquentes</h2>
-<details><summary>Delest supprime-t-il quelque chose tout seul ?</summary><p>Non. Il propose, vous choisissez, puis les dossiers vont en quarantaine pour sept jours. Rien n’est supprimé sans votre accord.</p></details><details><summary>Et si j’ai besoin d’un dossier mis en quarantaine ?</summary><p>Restaurez-le depuis la Quarantaine, ou avec <code>delest restore</code>, pendant sept jours. Au-delà, il est supprimé.</p></details><details><summary>Faut-il un agent d’IA pour utiliser Delest ?</summary><p>Non. L’application et la commande fonctionnent seules ; les agents ajoutent seulement un contrôle à chaque session.</p></details><details><summary>Que fait Delest d’un dossier qu’il ne reconnaît pas ?</summary><p>Il ne le propose pas. Le modèle local peut donner un avis, toujours vers la prudence, et la décision vous revient.</p></details><details><summary>Combien coûte Delest ?</summary><p>Rien. Delest est gratuit, sous licence MIT.</p></details>
+<details><summary>Delest supprime-t-il quelque chose tout seul ?</summary><p>Non. Il propose, vous choisissez, puis les dossiers vont en quarantaine pour sept jours. Rien n’est supprimé sans votre accord.</p></details><details><summary>Et si j’ai besoin d’un dossier mis en quarantaine ?</summary><p>Restaurez-le depuis la Quarantaine, ou avec <code>delest restore</code>, pendant sept jours. Au-delà, il est supprimé.</p></details><details><summary>Faut-il un agent d’IA pour utiliser Delest ?</summary><p>Non. L’application et la commande fonctionnent seules ; les agents ajoutent seulement un contrôle à chaque session.</p></details><details><summary>Que fait Delest d’un dossier qu’il ne reconnaît pas ?</summary><p>Il ne le propose pas. Le modèle local peut donner un avis, toujours vers la prudence, et la décision vous revient.</p></details><details><summary>Delest télécharge-t-il des modèles d’IA tout seul ?</summary><p>Non. Delest fonctionne sans eux. Dans Réglages › IA, « Installer l’IA locale » montre ce qu’il téléchargerait (environ 3,2 Go), et ne le fait qu’après votre accord ; chaque fichier est vérifié par son empreinte publiée. Le moteur demande macOS 13.3 ou plus récent, et sous Windows un runtime Visual C++ récent.</p></details><details><summary>Combien coûte Delest ?</summary><p>Rien. Delest est gratuit et open source, sous licence MIT : son code est <a href="https://github.com/kdev1966/Delest">sur GitHub</a>.</p></details>
 </section>
 
 <footer class="pied">
 <span>© 2026 Othman Kaabaoui · Delest</span>
-<span class="liens"><a href="confidentialite.html">Confidentialité</a><a href="conditions.html">Conditions d’utilisation</a><a href="mailto:kaabaoui.othman@gmail.com">Contact</a></span>
+<span class="liens"><a href="https://github.com/kdev1966/Delest">Code source</a><a href="confidentialite.html">Confidentialité</a><a href="conditions.html">Conditions d’utilisation</a><a href="mailto:kaabaoui.othman@gmail.com">Contact</a></span>
 </footer>
 </div>
 </body>
