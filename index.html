@@ -7,6 +7,14 @@
 <meta name="description" content="Delest finds what rebuilds itself on a developer's machine (builds, dependencies, caches), explains every verdict, and frees nothing without your consent. macOS, Windows and Linux.">
 <link rel="icon" href="icone.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="fr" href="fr/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Delest — free up disk space without touching your work">
+<meta property="og:description" content="Builds, dependencies and caches that rebuild, recognised by their manifest; every verdict explained; nothing deleted without your consent. macOS, Windows, Linux. Open source.">
+<meta property="og:url" content="https://kdev1966.github.io/delest-site/">
+<meta property="og:image" content="https://kdev1966.github.io/delest-site/carte.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,23 +46,82 @@
 </div>
 </section>
 
+<section class="section" id="terminal">
+<span class="etiquette">In your terminal</span><h2>What Delest sees in your projects</h2>
+<p>A real run on a demo folder: a Rust API, a Next.js site, a Python project with its .env, and a Flutter app whose build/ git does not know. Nothing is moved until you confirm.</p>
+<pre class="terminal"><code><span class="t-prompt">$</span> <span class="t-cmd">delest scan ~/projects</span>
+
+<span class="t-head">freeable — 330 MB (3)</span>
+<span class="t-size">    256 MB</span>  <span class="t-path">~/projects/api/target</span>
+<span class="t-why">            ignored by git; next to Cargo.toml; last commit today</span>
+<span class="t-size">     73 MB</span>  <span class="t-path">~/projects/web/.next</span>
+<span class="t-why">            ignored by git; next to package.json; last commit today</span>
+<span class="t-size">      1 MB</span>  <span class="t-path">~/projects/ml/__pycache__</span>
+<span class="t-why">            ignored by git; Python bytecode, regenerated on the next run; last commit today</span>
+
+<span class="t-head">freeable online — 100 MB (1)</span>
+<span class="t-size">    100 MB</span>  <span class="t-path">~/projects/web/node_modules</span>
+<span class="t-why">            ignored by git; lockfile package-lock.json; project worked on today (last commit)</span>
+
+<span class="t-head">to review — 126 MB (1)</span>
+<span class="t-size">    126 MB</span>  <span class="t-path">~/projects/ml/.venv</span>
+<span class="t-why">            ignored by git; only requirements.txt: a reinstall may bring other versions; project worked on today (last commit)</span>
+
+<span class="t-sum">Freeable: 330 MB, plus 100 MB with the network; 126 MB to review. Nothing was changed.</span>
+
+<span class="t-prompt">$</span> <span class="t-cmd">delest explain ~/projects/mobile/build</span>
+<span class="t-path">~/projects/mobile/build</span> — <span class="t-protected">protected</span> (build)
+  - neither tracked nor ignored by git
+  Size on disk: 42 MB
+
+<span class="t-prompt">$</span> <span class="t-cmd">delest clean ~/projects --dry-run</span>
+To move into the quarantine — 330 MB:
+<span class="t-size">    256 MB</span>  <span class="t-path">~/projects/api/target</span>
+<span class="t-why">            ignored by git; next to Cargo.toml; last commit today</span>
+<span class="t-size">     73 MB</span>  <span class="t-path">~/projects/web/.next</span>
+<span class="t-why">            ignored by git; next to package.json; last commit today</span>
+<span class="t-size">      1 MB</span>  <span class="t-path">~/projects/ml/__pycache__</span>
+<span class="t-why">            ignored by git; Python bytecode, regenerated on the next run; last commit today</span>
+
+<span class="t-sum">Kept: 1 item (100 MB) of projects worked on in the last 30 days.</span>
+
+<span class="t-sum">To review: 1 item (126 MB), left out; --review asks about each one.</span>
+
+<span class="t-sum">Preview only: nothing was moved.</span></code></pre>
+</section>
+
 <section class="section arbitre">
 <span class="etiquette">The core</span><h2>The Arbiter, at the heart of Delest</h2>
 <p>A typical cleaner deletes whatever looks like a cache. Delest does the opposite: it only proposes what it can prove rebuilds, and it shows you the proof.</p>
 <div class="grille deux"><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></div><h3>Only what rebuilds</h3><p><code>target</code>, <code>node_modules</code>, <code>build</code>, <code>.gradle</code>, <code>.venv</code>, <code>Pods</code>, <code>.next</code>: recognised by their manifest and lockfile, never by their name alone.</p></div><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 0 0 16a8 8 0 1 0 0-16z"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.3M12 16.3v.2"/></svg></div><h3>Every verdict explained</h3><p>Ignored by git, next to its manifest, last commit three days ago: every proposal comes with its reasons.</p></div><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l7 3v5c0 4.4-3 7.8-7 9-4-1.2-7-4.6-7-9v-5z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg></div><h3>Absolute bans</h3><p>Work git does not track, tracked files, secrets (<code>.env</code>, <code>.pem</code>), source code and Docker volumes are never proposed.</p></div><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6 7l1 13h10l1-13"/><path d="M10 11v5M14 11v5"/></svg></div><h3>Nothing leaves without you</h3><p>A preview, your consent, then the quarantine: seven days to restore anything, before the final deletion.</p></div></div>
 </section>
 
-<section class="section">
-<span class="etiquette">Integration</span><h2>With your agents</h2>
-<p>At the start of each session, Delest looks at the free space. It stays quiet, unless the disk is filling up.</p>
-<div class="grille"><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a1.5 1.5 0 0 1 1.5 1.5v8A1.5 1.5 0 0 1 19 16h-8l-4.5 3.5V16H5a1.5 1.5 0 0 1-1.5-1.5v-8A1.5 1.5 0 0 1 5 5z"/></svg></div><h3>In the session</h3><p>At most one alert a day and one notice a week: in the agent's session, and as a system notification.</p></div><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 0 0 16a8 8 0 1 0 0-16z"/><path d="M12 7.5V12l3 2"/></svg></div><h3>Or every four hours</h3><p>An optional timer, off by default, for the work done without an agent: launchd, systemd or the Task Scheduler.</p></div><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10l2.5 2L8 14M12.5 14H16"/></svg></div><h3>An MCP tool</h3><p>Your agents can ask for the disk's state and the reasons for a verdict, read-only.</p></div></div>
-<ul class="agents"><li>Claude Code</li><li>Codex</li><li>Cursor</li><li>Gemini CLI</li><li>VS Code (Copilot)</li><li>OpenCode</li><li>Kiro</li></ul>
+<section class="section" id="stack">
+<span class="etiquette">Your stack</span><h2>Recognised by its manifest, not by its name</h2>
+<p>A folder is proposed only when the file that rebuilds it sits next to it. The rules in shadow already recognise their folders and propose nothing until the corpus accepts them.</p>
+<div class="piles"><div class="pile"><b>Rust</b><span><code>target</code> next to <code>Cargo.toml</code></span></div><div class="pile"><b>Java (Maven)</b><span><code>target</code> next to <code>pom.xml</code></span></div><div class="pile"><b>Node</b><span><code>node_modules</code> with its lockfile: npm, pnpm, Yarn, Bun; <code>.next</code>, <code>.turbo</code></span></div><div class="pile"><b>Python</b><span><code>.venv</code>, <code>venv</code> with <code>uv.lock</code>, <code>poetry.lock</code>, <code>Pipfile.lock</code> or <code>pdm.lock</code>; <code>__pycache__</code></span></div><div class="pile"><b>Android, Gradle</b><span><code>build</code>, <code>.gradle</code> next to <code>build.gradle(.kts)</code></span></div><div class="pile"><b>Flutter, Dart</b><span><code>build</code>, <code>.dart_tool</code> next to <code>pubspec.yaml</code></span></div><div class="pile"><b>iOS</b><span><code>Pods</code> with <code>Podfile.lock</code>; Xcode's DerivedData</span></div><div class="pile"><b>Global caches</b><span>npm, Cargo registry, Gradle, Maven, pip, Yarn; Windows' AppData caches too</span></div></div>
+<div class="encadres"><div class="encadre"><b>In shadow</b><span>pytest, mypy, ruff, Parcel, SvelteKit, Nuxt, Angular, Unity's Library, ESP-IDF components</span></div><div class="encadre interdit"><b>Never proposed</b><span>untracked work, files tracked by git, <code>.env</code> and keys, source code, Docker volumes, AI models</span></div></div>
 </section>
 
-<section class="section">
-<span class="etiquette">Local AI</span><h2>AI that stays on your machine</h2>
-<p>For folders no rule recognises, Delest asks a small local model for an opinion. It can only make Delest more careful.</p>
-<div class="grille"><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.8 15.6C10 8 14 16 17.2 8.4"/><circle cx="5" cy="17" r="2"/><circle cx="19" cy="7" r="2"/></svg></div><h3>It recognises</h3><p>EmbeddingGemma 2 matches an unknown folder with known decisions and rules.</p></div><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 3.5V7M14 3.5V7M10 17v3.5M14 17v3.5M3.5 10H7M3.5 14H7M17 10h3.5M17 14h3.5"/></svg></div><h3>It reasons and answers</h3><p>Gemma 4 E2B gives its opinion and answers your questions about a folder. It runs only when memory and battery allow.</p></div><div class="carte"><div class="picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l7 3v5c0 4.4-3 7.8-7 9-4-1.2-7-4.6-7-9v-5z"/><path d="M12 8v4M12 15.5v.2"/></svg></div><h3>It never decides</h3><p>The model never makes a folder deletable and lifts no ban. On a click, you can also put the question to your agent.</p></div></div>
+
+
+<section class="section brain" id="brain">
+<span class="etiquette">The Brain</span><h2>A Brain that learns from you, only towards caution</h2>
+<p>Delest's Brain weighs the rules, your project's context and your past decisions. The local model is a voice it listens to on unknown folders, never the one that decides.</p>
+<svg class="schema" viewBox="0 0 860 300" role="img" aria-label="Brain"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="d-head"/></marker></defs><g><rect class="d-box" x="10" y="14" width="170" height="52" rx="10"/><text class="d-title" x="95.0" y="36">Scan</text><text class="d-sub" x="95.0" y="53">sizes, manifests</text></g><g><rect class="d-box" x="10" y="92" width="170" height="52" rx="10"/><text class="d-title" x="95.0" y="114">Context</text><text class="d-sub" x="95.0" y="131">git, activity, Handoff</text></g><g><rect class="d-box d-dashed" x="10" y="170" width="170" height="52" rx="10"/><text class="d-title" x="95.0" y="192">Local model</text><text class="d-sub" x="95.0" y="209">unknown folders only</text></g><g><rect class="d-box" x="10" y="236" width="170" height="52" rx="10"/><text class="d-title" x="95.0" y="258">Memory</text><text class="d-sub" x="95.0" y="275">your decisions</text></g><g><rect class="d-box" x="230" y="14" width="190" height="52" rx="10"/><text class="d-title" x="325.0" y="36">Rules</text><text class="d-sub" x="325.0" y="53">bans, known artefacts</text></g><g><rect class="d-arb" x="470" y="92" width="150" height="70" rx="12"/><text class="d-big" x="545" y="133">Arbiter</text></g><g><rect class="d-box" x="668" y="98" width="182" height="52" rx="10"/><text class="d-title" x="759.0" y="120">Proposals</text><text class="d-sub" x="759.0" y="137">with their reasons</text></g><g><rect class="d-box" x="668" y="220" width="182" height="52" rx="10"/><text class="d-title" x="759.0" y="242">Your decision</text><text class="d-sub" x="759.0" y="259">✓ / ✗</text></g><path class="d-line" d="M180 40 L228 40" marker-end="url(#a)"/><path class="d-line" d="M420 50 L488 90" marker-end="url(#a)"/><path class="d-line" d="M182 118 L468 122" marker-end="url(#a)"/><path class="d-line d-dash" d="M182 196 L466 150" marker-end="url(#a)"/><text class="d-note" x="250" y="168" transform="rotate(-9 250 168)">more careful only</text><path class="d-line" d="M182 252 L545 166" marker-end="url(#a)"/><path class="d-line" d="M620 127 L666 125" marker-end="url(#a)"/><path class="d-line" d="M759 150 L759 218" marker-end="url(#a)"/><path class="d-line" d="M668 262 C 520 300 300 300 184 276" marker-end="url(#a)"/></svg>
+<ul class="lois"><li><b>It works without a model</b><span>Rules, bans, context and memory decide. The model only helps on folders no rule knows.</span></li><li><b>Your refusals teach it</b><span>A folder you refuse three times is no longer proposed.</span></li><li><b>A restore is a lesson</b><span>A folder you put back from the quarantine goes back to “to review”; two restores of one rule's folders put the whole rule in doubt. Remembered for 90 days.</span></li><li><b>It knows what you work on</b><span>Dependencies of a project with a commit in the last 30 days are kept: reinstalling them would cost you now. Handoff, when present, tells it too.</span></li><li><b>Learning never lifts a ban</b><span>Habits only ever make Delest more careful: nothing it learns makes a protected folder deletable.</span></li><li><b>The model cannot say “deletable”</b><span>Its answers are bound by a grammar to “keep” or “to review”. It runs only when memory and battery allow, and every opinion is written to a journal.</span></li></ul>
+</section>
+
+<section class="section" id="agents">
+<span class="etiquette">Your agents</span><h2>One command, and your agents watch the disk</h2>
+<p>At each session, Delest checks the free space and stays quiet unless the disk is filling up. Through MCP, your agents can ask it themselves.</p>
+<div class="grille"><div class="carte"><h3>Hooks in your agents</h3><p><code>delest install</code> adds a check at session start to Claude Code, Codex, Cursor, Gemini CLI, VS Code (Copilot) and OpenCode; Kiro through Vario. Each file is backed up; <code>delest remove</code> takes them out.</p></div><div class="carte"><h3>Three MCP tools, read-only</h3><p><code>delest_status</code> (the disk and what can be freed), <code>delest_explain</code> (the reasons for one folder), <code>delest_scan</code> (what can be freed in folders you name).</p></div><div class="carte"><h3>Ask your agent, on a click</h3><p>For a folder you are unsure of, the app can put your question to Claude Code: the folder's path and the names of what it holds, never the files.</p></div></div>
+<pre class="commande"><code># the hooks
+delest install
+
+# Delest as an MCP server for Claude Code
+claude mcp add delest -- delest mcp</code></pre>
+<ul class="agents"><li>Claude Code</li><li>Codex</li><li>Cursor</li><li>Gemini CLI</li><li>VS Code (Copilot)</li><li>OpenCode</li><li>Kiro</li></ul>
 </section>
 
 <section class="section prive">
@@ -66,12 +133,19 @@
 <span class="etiquette">Proof</span><h2>Measured, not promised</h2>
 <p>Every rule is replayed on a corpus of real folders whose verdict was set by hand. Blocking criterion: no protected folder classed deletable.</p>
 <div class="preuves"><div class="preuve"><b>96%</b><div class="barre-seg" style="--part:96%"></div><p>agreement with the reference on 188 real folders, and no protected folder classed deletable.</p></div><div class="preuve"><b>68 → 99 GB</b><div class="barre-seg" style="--part:20%;--remplie:var(--libre)"></div><p>of free space after a full clean of the developer's machine, done from the app.</p></div><div class="preuve"><b>3 systems</b><div class="barre-seg" style="--part:100%"></div><p>macOS, Linux and Windows: a corpus of 34 situations gives the expected verdict there with every version.</p></div></div>
+<p class="liens-preuves">The corpus and its checks are in the code: <a href="https://github.com/kdev1966/Delest/blob/main/corpus/synthetique.toml">corpus/synthetique.toml</a>, tested on every change by the <a href="https://github.com/kdev1966/Delest/actions">CI on macOS, Linux and Windows</a>.</p>
 </section>
 
 <section class="section" id="download">
 <span class="etiquette">Version 0.1.2</span><h2>Download Delest 0.1.2</h2>
 <p>The app and the <code>delest</code> command, together. The packages are not signed yet: your system asks to confirm the first opening.</p>
-<div class="telechargements"><div class="systeme"><h3>macOS</h3><p>Intel and Apple Silicon, macOS 12 or later. The first time: right-click Delest, then Open.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.2/Delest_0.1.2_universal.dmg">Download the DMG</a></div><div class="systeme"><h3>Windows</h3><p>Windows 10 or 11, 64-bit, installed for your account only. SmartScreen: More info, then Run anyway.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.2/Delest_0.1.2_x64-setup.exe">Download the installer</a></div><div class="systeme"><h3>Linux</h3><p>64-bit, with WebKitGTK. The .deb package also installs the <code>delest</code> command.</p><div class="autres"><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.2/Delest_0.1.2_amd64.deb">.deb</a><a class="badge voile" href="https://github.com/kdev1966/Delest/releases/download/v0.1.2/Delest_0.1.2_amd64.AppImage">AppImage</a></div><p>No package installer on your system? From the folder where you downloaded it:</p><pre class="commande"><code>sudo apt install ./Delest_0.1.2_amd64.deb</code></pre><p>The AppImage needs no installation: <code>chmod +x Delest_0.1.2_amd64.AppImage</code>, then open it.</p></div></div>
+<div class="telechargements"><div class="systeme"><h3>macOS</h3><p>Intel and Apple Silicon, macOS 12 or later. The first time: right-click Delest, then Open.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.2/Delest_0.1.2_universal.dmg">Download the DMG</a></div><div class="systeme"><h3>Windows</h3><p>Windows 10 or 11, 64-bit, installed for your account only. SmartScreen: More info, then Run anyway.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.2/Delest_0.1.2_x64-setup.exe">Download the installer</a></div><div class="systeme"><h3>Linux</h3><p>64-bit, with WebKitGTK. The .deb package also installs the <code>delest</code> command.</p><div class="autres"><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.2/Delest_0.1.2_amd64.deb">.deb</a><a class="badge voile" href="https://github.com/kdev1966/Delest/releases/download/v0.1.2/Delest_0.1.2_amd64.AppImage">AppImage</a></div><p>No package installer on your system? From the folder where you downloaded it:</p><pre class="commande"><code>sudo apt install ./Delest_0.1.2_amd64.deb</code></pre><p>The AppImage needs no installation: <code>chmod +x Delest_0.1.2_amd64.AppImage</code>, then open it.</p></div><div class="systeme cargo"><h3>With Cargo</h3><p>The command alone, built from the source:</p><pre class="commande"><code>cargo install --git https://github.com/kdev1966/Delest delest</code></pre></div></div>
+</section>
+
+<section class="section" id="source">
+<span class="etiquette">Open source</span><h2>Read it, check it, improve it</h2>
+<p>Delest deletes files: you should be able to read how it decides. Everything is on GitHub, under the MIT licence.</p>
+<div class="sources"><a class="source" href="https://github.com/kdev1966/Delest"><b>The code</b><span>The rules, the Arbiter, the quarantine and the Brain.</span><em>GitHub ↗</em></a><a class="source" href="https://github.com/kdev1966/Delest/blob/main/CONTRIBUTING.md"><b>Add a rule</b><span>A rule starts in shadow and comes with its cases in the corpus.</span><em>CONTRIBUTING ↗</em></a><a class="source" href="https://github.com/kdev1966/Delest/blob/main/CHANGELOG.md"><b>What changed</b><span>Every version, what it adds and its known limits.</span><em>CHANGELOG ↗</em></a><a class="source" href="https://github.com/kdev1966/Delest/blob/main/SECURITY.md"><b>Report a flaw</b><span>Privately, for anything that could make Delest delete what it protects.</span><em>SECURITY ↗</em></a></div>
 </section>
 
 <section class="section questions">

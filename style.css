@@ -129,3 +129,73 @@ main footer { border-top: 1px solid var(--filet); margin-top: 48px; padding-top:
   .scene { flex-direction: column; align-items: center; }
   .verdict { margin-top: 0; width: min(300px, 100%); }
 }
+
+/* ---- Developer sections ---- */
+
+/* The terminal: a real run, coloured as a terminal would. */
+.terminal { margin: 0; padding: 18px 20px; border-radius: 12px; background: var(--ecran); border: 1px solid var(--filet);
+  overflow-x: auto; box-shadow: var(--ombre); }
+.terminal code { font-family: var(--mono); font-size: .8rem; line-height: 1.4; color: var(--doux); white-space: pre; }
+.t-prompt { color: var(--libre); font-weight: 700; }
+.t-cmd { color: var(--encre); font-weight: 600; }
+.t-head { color: var(--accent); font-weight: 700; }
+.t-size { color: var(--encre); }
+.t-path { color: var(--encre); }
+.t-why { color: var(--graphite); }
+.t-sum { color: var(--doux); font-weight: 600; }
+.t-protected { color: var(--juger); font-weight: 700; }
+
+/* The stacks Delest knows. */
+.piles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.pile { display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 12px;
+  background: linear-gradient(180deg, var(--panneau), var(--fond)); border: 1px solid var(--filet); }
+.pile b { font-size: 1rem; }
+.pile span { color: var(--graphite); font-size: .88rem; }
+.encadres { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.encadre { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: 12px; border: 1px dashed var(--filet); }
+.encadre b { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--graphite); }
+.encadre span { color: var(--doux); font-size: .9rem; }
+.encadre.interdit { border-style: solid; border-color: #4a3a1c; }
+.encadre.interdit b { color: var(--juger); }
+
+/* The Brain: its diagram and its rules. */
+.brain .schema { display: block; width: 100%; height: auto; margin: 8px 0 28px; }
+.d-box { fill: var(--panneau); stroke: var(--filet); stroke-width: 1.2; }
+.d-dashed { stroke-dasharray: 5 4; fill: transparent; }
+.d-arb { fill: var(--voile); stroke: var(--accent); stroke-width: 1.6; }
+.d-title { fill: var(--encre); font: 700 15px -apple-system, system-ui, sans-serif; text-anchor: middle; }
+.d-sub { fill: var(--graphite); font: 12px -apple-system, system-ui, sans-serif; text-anchor: middle; }
+.d-big { fill: var(--accent); font: 800 19px -apple-system, system-ui, sans-serif; text-anchor: middle; }
+.d-line { fill: none; stroke: var(--graphite); stroke-width: 1.4; }
+.d-dash { stroke-dasharray: 5 4; }
+.d-head { fill: var(--graphite); }
+.d-note { fill: var(--graphite); font: italic 12px -apple-system, system-ui, sans-serif; }
+.lois { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.lois li { display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 12px;
+  background: linear-gradient(180deg, var(--panneau), var(--fond)); border: 1px solid var(--filet); }
+.lois b { color: var(--encre); }
+.lois span { color: var(--graphite); font-size: .92rem; }
+
+/* Agents: the commands under the cards. */
+#agents .commande { margin-top: 16px; }
+#agents .commande code { white-space: pre; }
+
+/* Proof and download. */
+.liens-preuves { margin: 18px 0 0; color: var(--graphite); font-size: .92rem; }
+.systeme.cargo { grid-column: 1 / -1; }
+
+/* Open source. */
+.sources { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.source { display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 12px; text-decoration: none;
+  background: linear-gradient(180deg, var(--panneau), var(--fond)); border: 1px solid var(--filet); color: var(--encre); }
+.source:hover { border-color: var(--accent); }
+.source span { color: var(--graphite); font-size: .9rem; }
+.source em { font-style: normal; font-family: var(--mono); font-size: .8rem; color: var(--accent); margin-top: auto; }
+
+@media (max-width: 860px) {
+  .piles, .sources { grid-template-columns: 1fr 1fr; }
+  .lois, .encadres { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .piles, .sources { grid-template-columns: 1fr; }
+}
