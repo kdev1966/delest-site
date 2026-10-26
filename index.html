@@ -115,12 +115,18 @@ To move into the quarantine — 330 MB:
 <section class="section" id="agents">
 <span class="etiquette">Your agents</span><h2>One command, and your agents watch the disk</h2>
 <p>At each session, Delest checks the free space and stays quiet unless the disk is filling up. Through MCP, your agents can ask it themselves.</p>
-<div class="grille"><div class="carte"><h3>Hooks in your agents</h3><p><code>delest install</code> adds a check at session start to Claude Code, Codex, Cursor, Gemini CLI, VS Code (Copilot) and OpenCode; Kiro through Vario. Each file is backed up; <code>delest remove</code> takes them out.</p></div><div class="carte"><h3>Three MCP tools, read-only</h3><p><code>delest_status</code> (the disk and what can be freed), <code>delest_explain</code> (the reasons for one folder), <code>delest_scan</code> (what can be freed in folders you name).</p></div><div class="carte"><h3>Ask your agent, on a click</h3><p>For a folder you are unsure of, the app can put your question to Claude Code: the folder's path and the names of what it holds, never the files.</p></div></div>
-<pre class="commande"><code># the hooks
+<div class="grille"><div class="carte"><h3>Hooks in your agents</h3><p>A check at session start in Claude Code, Codex, Cursor, Gemini CLI, VS Code (Copilot) and OpenCode; Kiro through Vario. In the app: Settings › A check at each agent session, one button per agent. In a terminal: <code>delest install</code>, and <code>delest remove</code> takes them out. Each file is backed up.</p></div><div class="carte"><h3>Three MCP tools, read-only</h3><p><code>delest_status</code> (the disk and what can be freed), <code>delest_explain</code> (the reasons for one folder), <code>delest_scan</code> (what can be freed in folders you name).</p></div><div class="carte"><h3>Ask your agent, on a click</h3><p>For a folder you are unsure of, the app can put your question to Claude Code: the folder's path and the names of what it holds, never the files.</p></div></div>
+<pre class="commande"><code># the hooks, from a terminal
 delest install
 
 # Delest as an MCP server for Claude Code
-claude mcp add delest -- delest mcp</code></pre>
+# Linux (.deb) or Cargo
+claude mcp add delest -- delest mcp
+# macOS
+claude mcp add delest -- /Applications/Delest.app/Contents/MacOS/delest mcp
+# Windows (PowerShell)
+claude mcp add delest -- "$env:LOCALAPPDATA\Delest\delest.exe" mcp</code></pre>
+<p class="note">With the macOS or Windows app, <code>delest</code> stays inside the app: give its full path, as above, or install the command with Cargo.</p>
 <ul class="agents"><li>Claude Code</li><li>Codex</li><li>Cursor</li><li>Gemini CLI</li><li>VS Code (Copilot)</li><li>OpenCode</li><li>Kiro</li></ul>
 </section>
 
@@ -138,8 +144,8 @@ claude mcp add delest -- delest mcp</code></pre>
 
 <section class="section" id="download">
 <span class="etiquette">Version 0.1.3</span><h2>Download Delest 0.1.3</h2>
-<p>The app and the <code>delest</code> command, together. The packages are not signed yet: your system asks to confirm the first opening.</p>
-<div class="telechargements"><div class="systeme"><h3>macOS</h3><p>Intel and Apple Silicon, macOS 12 or later. The first time: right-click Delest, then Open.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.3/Delest_0.1.3_universal.dmg">Download the DMG</a></div><div class="systeme"><h3>Windows</h3><p>Windows 10 or 11, 64-bit, installed for your account only. SmartScreen: More info, then Run anyway.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.3/Delest_0.1.3_x64-setup.exe">Download the installer</a></div><div class="systeme"><h3>Linux</h3><p>64-bit, with WebKitGTK. The .deb package also installs the <code>delest</code> command.</p><div class="autres"><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.3/Delest_0.1.3_amd64.deb">.deb</a><a class="badge voile" href="https://github.com/kdev1966/Delest/releases/download/v0.1.3/Delest_0.1.3_amd64.AppImage">AppImage</a></div><p>No package installer on your system? From the folder where you downloaded it:</p><pre class="commande"><code>sudo apt install ./Delest_0.1.3_amd64.deb</code></pre><p>The AppImage needs no installation: <code>chmod +x Delest_0.1.3_amd64.AppImage</code>, then open it.</p></div><div class="systeme cargo"><h3>With Cargo</h3><p>The command alone, built from the source:</p><pre class="commande"><code>cargo install --git https://github.com/kdev1966/Delest delest</code></pre></div></div>
+<p>The app with the <code>delest</code> command inside. The packages are not signed yet: your system asks to confirm the first opening.</p>
+<div class="telechargements"><div class="systeme"><h3>macOS</h3><p>Intel and Apple Silicon, macOS 12 or later. The first time: right-click Delest, then Open. The command: <code>/Applications/Delest.app/Contents/MacOS/delest</code>.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.3/Delest_0.1.3_universal.dmg">Download the DMG</a></div><div class="systeme"><h3>Windows</h3><p>Windows 10 or 11, 64-bit, installed for your account only. SmartScreen: More info, then Run anyway. The command: <code>%LOCALAPPDATA%\Delest\delest.exe</code>.</p><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.3/Delest_0.1.3_x64-setup.exe">Download the installer</a></div><div class="systeme"><h3>Linux</h3><p>64-bit, with WebKitGTK. The .deb package also installs the <code>delest</code> command.</p><div class="autres"><a class="badge plein" href="https://github.com/kdev1966/Delest/releases/download/v0.1.3/Delest_0.1.3_amd64.deb">.deb</a><a class="badge voile" href="https://github.com/kdev1966/Delest/releases/download/v0.1.3/Delest_0.1.3_amd64.AppImage">AppImage</a></div><p>No package installer on your system? From the folder where you downloaded it:</p><pre class="commande"><code>sudo apt install ./Delest_0.1.3_amd64.deb</code></pre><p>The AppImage needs no installation: <code>chmod +x Delest_0.1.3_amd64.AppImage</code>, then open it.</p></div><div class="systeme cargo"><h3>With Cargo</h3><p>The command alone, built from the source:</p><pre class="commande"><code>cargo install --git https://github.com/kdev1966/Delest delest</code></pre></div></div>
 </section>
 
 <section class="section" id="source">

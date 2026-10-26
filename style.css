@@ -108,6 +108,7 @@ main footer { border-top: 1px solid var(--filet); margin-top: 48px; padding-top:
 /* A command to copy, as the app's display plates. */
 .commande { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--ecran); border: 1px solid var(--filet); overflow-x: auto; }
 .commande code { font-size: .82rem; color: var(--encre); user-select: all; white-space: pre; }
+.note { color: var(--graphite); font-size: .95rem; margin: 10px 0 0; }
 
 .questions details { border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; }
 .questions summary { cursor: pointer; font-weight: 600; }
