@@ -11,7 +11,7 @@
 <main>
 <nav><a href="index.html">Delest</a><a href="terms.html">Terms of use</a><a href="fr/confidentialite.html" lang="fr">Français</a></nav>
 <h1>Privacy policy</h1>
-<p class="date">Effective 25 October 2026</p>
+<p class="date">Effective 28 October 2026</p>
 
 <p>Delest is a desktop app and a command for macOS, Windows and Linux, developed by Othman Kaabaoui. It finds what
 rebuilds itself on a developer's machine (builds, dependencies, caches) and frees the space with their consent. This
@@ -36,6 +36,10 @@ what it did, the list of quarantined items, your decisions and your settings. Th
 <ul>
 <li><strong>Whether the network is there.</strong> Before proposing a folder that only rebuilds online (npm dependencies,
 for instance), Delest tries a connection to <code>registry.npmjs.org</code>, sending nothing.</li>
+<li><strong>New versions.</strong> At most once a day, the app asks GitHub (<code>api.github.com</code>) for
+Delest's latest published version, sending nothing but the request; as with any visit, GitHub sees your IP address.
+When a newer version exists, the app says so and offers the download page; it installs nothing by itself. Turn it off
+in Settings › New versions.</li>
 <li><strong>The AI models.</strong> They are downloaded from Hugging Face, only when you ask for it
 (<code>delest models</code>).</li>
 <li><strong>The local model.</strong> It runs on your machine and listens on the local address <code>127.0.0.1</code>

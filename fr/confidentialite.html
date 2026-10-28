@@ -11,7 +11,7 @@
 <main>
 <nav><a href="index.html">Delest</a><a href="conditions.html">Conditions d’utilisation</a><a href="../privacy.html" lang="en">English</a></nav>
 <h1>Politique de confidentialité</h1>
-<p class="date">En vigueur le 25 octobre 2026</p>
+<p class="date">En vigueur le 28 octobre 2026</p>
 
 <p>Delest est une application de bureau et une commande pour macOS, Windows et Linux, développées par Othman Kaabaoui.
 Elle trouve sur le poste d’un développeur ce qui se reconstruit (compilations, dépendances, caches) et libère l’espace
@@ -36,6 +36,10 @@ le journal de ce qu’il a fait, la liste des éléments en quarantaine, vos dé
 <ul>
 <li><strong>Savoir si le réseau est là.</strong> Avant de proposer un dossier qui ne se reconstruit qu’en ligne (des
 dépendances npm, par exemple), Delest tente une connexion à <code>registry.npmjs.org</code>, sans rien y envoyer.</li>
+<li><strong>Les nouvelles versions.</strong> Au plus une fois par jour, l’application demande à GitHub
+(<code>api.github.com</code>) la dernière version publiée de Delest, sans rien envoyer d’autre que la demande ; comme
+pour toute visite, GitHub voit votre adresse IP. Si une version plus récente existe, l’application le dit et propose
+la page de téléchargement ; elle n’installe rien d’elle-même. Ce réglage se coupe dans Réglages › Nouvelles versions.</li>
 <li><strong>Les modèles d’IA.</strong> Ils sont téléchargés depuis Hugging Face, seulement quand vous le demandez
 (<code>delest models</code>).</li>
 <li><strong>Le modèle local.</strong> Il tourne sur votre poste et n’écoute que l’adresse locale
